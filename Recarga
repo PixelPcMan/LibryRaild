@@ -1,0 +1,22 @@
+local weapons = {
+    "Rifle",
+    "Shotgun",
+    "Sawed-Off Shotgun",
+    "Bolt Action Rifle",
+    "Revolver"
+}
+
+local replicatedStorage = game:GetService("ReplicatedStorage")
+local localPlayer = game:GetService("Players").LocalPlayer
+local reloadRemote = replicatedStorage:WaitForChild("Remotes"):WaitForChild("Weapon"):WaitForChild("Reload")
+
+for _, weaponName in ipairs(weapons) do
+    local weapon = localPlayer.Character:FindFirstChild(weaponName)
+    if weapon then
+        local args = {
+            [1] = 0,
+            [2] = weapon
+        }
+        reloadRemote:FireServer(unpack(args))
+    end
+end
