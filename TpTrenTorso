@@ -1,0 +1,17 @@
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer or Players:GetPlayerFromCharacter(script.Parent)
+local vehicleSeat = workspace.Train.TrainControls.ConductorSeat.VehicleSeat
+
+local function teleportToVehicleSeat()
+    if player and player.Character then
+        local character = player.Character
+        local torso = character:FindFirstChild("HumanoidRootPart") -- Cambia "Torso" por "HumanoidRootPart"
+        
+        if torso then
+            -- Mueve solo el torso a la posición del VehicleSeat
+            torso.CFrame = vehicleSeat.CFrame * CFrame.new(0, 1, 0) -- Ajusta la altura si es necesario
+        end
+    end
+end
+
+teleportToVehicleSeat()
